@@ -430,14 +430,26 @@
   }
 
   .warmer-img {
-    background: url('candles-home.png') center / cover no-repeat;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
     position: relative;
   }
 
-  .warmer-img::after {
+  .warmer-img-top {
+    background: url('warmer-torso.jpg') center / cover no-repeat;
+    position: relative;
+  }
+
+  .warmer-img-bottom {
+    background: url('warmer-derriere.jpg') center / cover no-repeat;
+    position: relative;
+  }
+
+  .warmer-img-top::after,
+  .warmer-img-bottom::after {
     content: '';
     position: absolute; inset: 0;
-    background: rgba(28,22,24,0.18);
+    background: rgba(28,22,24,0.1);
   }
 
   .warmer-content {
@@ -1028,7 +1040,10 @@
 
 <!-- WAX WARMER FEATURE -->
 <div class="warmer">
-  <div class="warmer-img"></div>
+  <div class="warmer-img">
+    <div class="warmer-img-top"></div>
+    <div class="warmer-img-bottom"></div>
+  </div>
   <div class="warmer-content">
     <div class="reveal">
       <span class="section-label">Signature Collection</span>
