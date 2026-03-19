@@ -3,1191 +3,1528 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harmony House — Luxury Home & Body Care</title>
+<title>Harmony House — No. 1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --purple: #5c3d6e;
-    --purple-light: #8b6fa0;
-    --purple-mist: #c4aed4;
-    --cream: #f7f3ed;
-    --cream-deep: #ede7dd;
-    --beige: #d6cab8;
-    --warm-white: #faf8f4;
-    --brown-soft: #9e8878;
-    --text-dark: #1c1618;
-    --text-mid: #4a3d42;
-    --text-light: #8a7a82;
-    --gold: #c4a882;
-    --gold-light: #e8d8c0;
+    --ink: #0e0c0a;
+    --ink-mid: #2a2420;
+    --ink-soft: #6b5f58;
+    --paper: #f4efe8;
+    --paper-warm: #ede6db;
+    --paper-deep: #e0d5c6;
+    --copper: #b07d52;
+    --copper-light: #d4a97a;
+    --copper-pale: #ecdcc8;
+    --rule: rgba(14,12,10,0.12);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
+
   body {
-    font-family: 'Outfit', sans-serif;
-    background: var(--warm-white);
-    color: var(--text-dark);
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
     overflow-x: hidden;
+    cursor: none;
   }
 
-  /* ── NAV ── */
-  nav {
+  /* Custom cursor */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--ink);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease, width 0.3s, height 0.3s, background 0.3s;
+    transform: translate(-50%, -50%);
+  }
+
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.4s ease, width 0.3s, height 0.3s, opacity 0.3s;
+    transform: translate(-50%, -50%);
+    opacity: 0.4;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 20px 64px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .masthead-top {
     display: flex; align-items: center; justify-content: space-between;
-    background: rgba(250,248,244,0.90);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(196,174,212,0.18);
-    transition: padding 0.3s;
+    padding: 10px 48px;
+    border-bottom: 1px solid var(--rule);
   }
 
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.35rem;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-    color: var(--text-dark);
-    text-decoration: none;
+  .masthead-tagline {
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
   }
 
-  .nav-logo span { color: var(--purple-light); }
-
-  .nav-links { display: flex; gap: 40px; list-style: none; }
-
-  .nav-links a {
-    font-size: 0.68rem;
-    font-weight: 400;
+  .masthead-issue {
+    font-size: 0.58rem;
+    font-weight: 300;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--text-mid);
+    color: var(--ink-soft);
+  }
+
+  .masthead-main {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 48px;
+  }
+
+  .masthead-nav { display: flex; gap: 32px; }
+
+  .masthead-nav a {
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
     text-decoration: none;
     transition: color 0.3s;
   }
 
-  .nav-links a:hover { color: var(--purple); }
+  .masthead-nav a:hover { color: var(--copper); }
 
-  .nav-btn {
-    font-size: 0.68rem;
+  .masthead-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
     font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--warm-white);
-    background: var(--purple);
-    padding: 10px 24px;
+    letter-spacing: 0.04em;
+    color: var(--ink);
     text-decoration: none;
-    border: 1px solid var(--purple);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .masthead-actions { display: flex; gap: 24px; align-items: center; }
+
+  .masthead-actions a {
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .masthead-actions a:hover { color: var(--copper); }
+
+  .shop-link {
+    padding: 8px 20px;
+    border: 1px solid var(--ink);
+    font-size: 0.6rem !important;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: all 0.3s !important;
+  }
+
+  .shop-link:hover {
+    background: var(--ink);
+    color: var(--paper) !important;
+  }
+
+  /* ── HERO — EDITORIAL SPREAD ── */
+  .hero {
+    margin-top: 95px;
+    display: grid;
+    grid-template-columns: 1fr 2px 1.4fr 2px 0.8fr;
+    height: calc(100vh - 95px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero-col-rule { background: var(--rule); }
+
+  .hero-left {
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: none;
+  }
+
+  .hero-issue-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 7rem;
+    font-weight: 400;
+    color: var(--paper-deep);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .hero-left-foot {
+    display: flex; flex-direction: column; gap: 20px;
+  }
+
+  .hero-kicker {
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--copper);
+  }
+
+  .hero-left-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.6rem;
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+
+  .hero-left-sub {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.9;
+    max-width: 220px;
+  }
+
+  .hero-btn {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 12px 28px;
+    border: 1px solid var(--ink);
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    transition: all 0.35s;
+  }
+
+  .hero-btn:hover { background: var(--ink); color: var(--paper); }
+
+  .hero-center {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-center-img {
+    position: absolute; inset: 0;
+    background: url('hero-living-room.png') center / cover no-repeat;
+    transition: transform 8s ease;
+  }
+
+  .hero:hover .hero-center-img { transform: scale(1.04); }
+
+  .hero-center-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(14,12,10,0.3) 100%);
+  }
+
+  .hero-center-caption {
+    position: absolute;
+    bottom: 32px; left: 32px; right: 32px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+  }
+
+  .hero-caption-text {
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(244,239,232,0.7);
+  }
+
+  .hero-center-vol {
+    font-family: 'DM Serif Display', serif;
+    font-size: 4rem;
+    font-style: italic;
+    color: rgba(244,239,232,0.15);
+    line-height: 1;
+  }
+
+  .hero-right {
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--paper-warm);
+  }
+
+  .hero-right-top { display: flex; flex-direction: column; gap: 16px; }
+
+  .hero-right-label {
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--copper);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero-toc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+    cursor: pointer;
     transition: all 0.3s;
   }
 
-  .nav-btn:hover { background: transparent; color: var(--purple); }
+  .hero-toc-item:hover .toc-name { color: var(--copper); }
 
-  /* ── HERO ── */
-  .hero {
-    height: 100vh;
-    position: relative;
-    display: flex; align-items: center; justify-content: flex-start;
-    overflow: hidden;
-  }
-
-  .hero-img {
-    position: absolute; inset: 0;
-    background: url('hero-living-room.png') center center / cover no-repeat;
-  }
-
-  .hero-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(
-      105deg,
-      rgba(20,14,18,0.72) 0%,
-      rgba(20,14,18,0.45) 55%,
-      rgba(20,14,18,0.15) 100%
-    );
-  }
-
-  .hero-content {
-    position: relative; z-index: 2;
-    padding: 0 64px;
-    max-width: 680px;
-    animation: hero-in 1.6s cubic-bezier(0.16,1,0.3,1) both;
-  }
-
-  @keyframes hero-in {
-    from { opacity: 0; transform: translateY(36px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-eyebrow {
-    display: block;
-    font-size: 0.62rem;
-    font-weight: 400;
-    letter-spacing: 0.38em;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    margin-bottom: 24px;
-    opacity: 0.85;
-  }
-
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 6vw, 5.2rem);
-    font-weight: 300;
-    line-height: 1.1;
-    color: #faf8f4;
-    letter-spacing: -0.01em;
-    margin-bottom: 24px;
-  }
-
-  .hero h1 em { font-style: italic; color: var(--gold-light); }
-
-  .hero-sub {
+  .toc-name {
+    font-family: 'DM Serif Display', serif;
     font-size: 0.95rem;
-    font-weight: 300;
-    color: rgba(250,248,244,0.65);
-    line-height: 1.9;
-    margin-bottom: 48px;
-    max-width: 440px;
+    color: var(--ink);
+    transition: color 0.3s;
   }
 
-  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-
-  .btn-solid {
-    display: inline-block;
-    padding: 15px 36px;
-    background: var(--purple);
-    color: #faf8f4;
-    text-decoration: none;
-    font-size: 0.68rem;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    border: 1px solid var(--purple);
-    transition: all 0.35s;
-  }
-
-  .btn-solid:hover {
-    background: transparent;
-    color: #faf8f4;
-    border-color: rgba(250,248,244,0.5);
-    transform: translateY(-2px);
-  }
-
-  .btn-ghost-light {
-    display: inline-block;
-    padding: 15px 36px;
-    background: transparent;
-    color: rgba(250,248,244,0.85);
-    text-decoration: none;
-    font-size: 0.68rem;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    border: 1px solid rgba(250,248,244,0.35);
-    transition: all 0.35s;
-  }
-
-  .btn-ghost-light:hover {
-    border-color: rgba(250,248,244,0.7);
-    transform: translateY(-2px);
-  }
-
-  .hero-scroll-hint {
-    position: absolute; bottom: 36px; left: 64px;
-    display: flex; align-items: center; gap: 12px;
-    z-index: 2;
+  .toc-page {
     font-size: 0.6rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    letter-spacing: 0.1em;
+  }
+
+  .hero-right-bottom { }
+
+  .hero-right-img {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .hero-right-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .hero-right-img:hover img { transform: scale(1.04); }
+
+  .hero-right-caption {
+    font-size: 0.62rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    letter-spacing: 0.12em;
+    line-height: 1.7;
+  }
+
+  /* ── SECTION DIVIDER ── */
+  .divider {
+    display: flex; align-items: center; gap: 20px;
+    padding: 24px 48px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .divider-rule { flex: 1; height: 1px; background: var(--rule); }
+
+  .divider-text {
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* ── FEATURE SPREAD ── */
+  .feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--rule);
+    min-height: 70vh;
+  }
+
+  .feature-text {
+    padding: 80px 64px;
+    display: flex; flex-direction: column; justify-content: center;
+    border-right: 1px solid var(--rule);
+  }
+
+  .feature-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 10rem;
+    font-weight: 400;
+    color: var(--paper-deep);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: -24px;
+  }
+
+  .feature-label {
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 20px;
+  }
+
+  .feature-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 4vw, 4rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .feature-headline em { font-style: italic; }
+
+  .feature-body {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 2.1;
+    max-width: 400px;
+    margin-bottom: 40px;
+  }
+
+  .feature-img {
+    position: relative;
+    overflow: hidden;
+    background: var(--paper-warm);
+  }
+
+  .feature-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+
+  .feature:hover .feature-img img { transform: scale(1.04); }
+
+  .feature-img-label {
+    position: absolute;
+    top: 32px; right: 32px;
+    writing-mode: vertical-rl;
+    font-size: 0.58rem;
+    font-weight: 300;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: rgba(250,248,244,0.35);
-    animation: hero-in 1.6s 0.4s both;
+    color: rgba(244,239,232,0.5);
   }
 
-  .scroll-bar {
-    width: 40px; height: 1px;
-    background: rgba(250,248,244,0.3);
-    position: relative; overflow: hidden;
+  /* ── PRODUCT GRID — EDITORIAL ── */
+  .products {
+    padding: 80px 48px;
+    border-bottom: 1px solid var(--rule);
   }
 
-  .scroll-bar::after {
-    content: '';
-    position: absolute; top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: rgba(250,248,244,0.7);
-    animation: scroll-sweep 2.4s ease-in-out infinite;
-  }
-
-  @keyframes scroll-sweep {
-    0% { left: -100%; }
-    100% { left: 100%; }
-  }
-
-  /* ── SHARED LAYOUT ── */
-  .section-wrap { max-width: 1240px; margin: 0 auto; }
-
-  .section-label {
-    display: block;
-    font-size: 0.6rem;
-    font-weight: 400;
-    letter-spacing: 0.38em;
-    text-transform: uppercase;
-    color: var(--purple-light);
-    margin-bottom: 14px;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.9rem, 3.5vw, 3rem);
-    font-weight: 300;
-    line-height: 1.2;
-    color: var(--text-dark);
-    margin-bottom: 14px;
-  }
-
-  .section-sub {
-    font-size: 0.86rem;
-    font-weight: 300;
-    color: var(--text-light);
-    line-height: 1.95;
-  }
-
-  /* ── CATEGORIES ── */
-  .categories {
-    padding: 110px 64px;
-    background: var(--warm-white);
-  }
-
-  .cat-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 56px;
-  }
-
-  .cat-header .section-sub { max-width: 380px; }
-
-  .cat-grid {
+  .products-masthead {
     display: grid;
-    grid-template-columns: 1.3fr 1fr 1fr;
-    gap: 3px;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: end;
+    margin-bottom: 60px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
   }
 
-  .cat-card {
+  .products-masthead h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--ink);
+  }
+
+  .products-masthead h2 em { font-style: italic; color: var(--copper); }
+
+  .products-masthead-right {
+    display: flex; flex-direction: column; gap: 16px; align-items: flex-end;
+  }
+
+  .products-masthead p {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.9;
+    text-align: right;
+    max-width: 320px;
+  }
+
+  /* Asymmetric product grid */
+  .prod-editorial-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 0.8fr;
+    grid-template-rows: auto auto;
+    gap: 2px;
+  }
+
+  .prod-ed {
     position: relative;
     overflow: hidden;
+    background: var(--paper-warm);
     cursor: pointer;
-    background: var(--cream-deep);
   }
 
-  .cat-card:first-child { height: 520px; }
-  .cat-card:not(:first-child) { height: 520px; }
-
-  .cat-photo {
-    position: absolute; inset: 0;
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.9s cubic-bezier(0.16,1,0.3,1);
+  .prod-ed:first-child {
+    grid-row: span 2;
   }
 
-  .cat-card:hover .cat-photo { transform: scale(1.06); }
-
-  .cat-photo-1 { background-image: url('candles-home.png'); }
-  .cat-photo-2 { background-image: url('body-care-tray.png'); }
-  .cat-photo-3 { background-image: url('mens-body-care.png'); }
-
-  .cat-dark {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(20,14,18,0.72) 0%, transparent 55%);
-  }
-
-  .cat-info {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    padding: 28px 32px;
-  }
-
-  .cat-name {
-    display: block;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.35rem;
-    font-weight: 300;
-    color: var(--warm-white);
-    margin-bottom: 6px;
-  }
-
-  .cat-link {
-    font-size: 0.62rem;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    text-decoration: none;
-    opacity: 0.7;
-    transition: opacity 0.3s;
-  }
-
-  .cat-card:hover .cat-link { opacity: 1; }
-
-  /* ── BEST SELLERS ── */
-  .bestsellers {
-    padding: 110px 64px;
-    background: var(--cream);
-  }
-
-  .bs-header { text-align: center; margin-bottom: 64px; }
-  .bs-header .section-sub { max-width: 420px; margin: 0 auto; }
-
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-
-  .prod-card {
-    background: var(--warm-white);
-    cursor: pointer;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-  }
-
-  .prod-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 18px 56px rgba(92,61,110,0.1);
-  }
-
-  .prod-img {
-    aspect-ratio: 4/5;
+  .prod-ed-img {
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
     overflow: hidden;
     position: relative;
   }
 
-  .prod-photo {
+  .prod-ed:first-child .prod-ed-img { min-height: 560px; }
+
+  .prod-ed-img img {
     width: 100%; height: 100%;
     object-fit: cover;
     transition: transform 0.7s ease;
   }
 
-  .prod-card:hover .prod-photo { transform: scale(1.04); }
+  .prod-ed:hover .prod-ed-img img { transform: scale(1.05); }
 
-  .prod-badge {
-    position: absolute; top: 14px; left: 14px;
-    background: var(--purple);
-    color: var(--warm-white);
-    font-size: 0.52rem;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    padding: 5px 11px;
+  .prod-ed-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px 22px;
+    background: linear-gradient(to top, rgba(14,12,10,0.75) 0%, transparent 100%);
+    transform: translateY(8px);
+    transition: transform 0.4s ease;
   }
 
-  .prod-info { padding: 18px 20px 22px; }
+  .prod-ed:hover .prod-ed-info { transform: translateY(0); }
 
-  .prod-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--text-dark);
-    margin-bottom: 4px;
+  .prod-ed-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--paper);
+    display: block;
+    margin-bottom: 2px;
   }
 
-  .prod-desc {
-    font-size: 0.72rem;
+  .prod-ed-type {
+    font-size: 0.62rem;
     font-weight: 300;
-    color: var(--text-light);
-    margin-bottom: 14px;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.15em;
+    color: rgba(244,239,232,0.6);
+    display: block;
+    margin-bottom: 10px;
   }
 
-  .prod-row {
-    display: flex; align-items: center; justify-content: space-between;
+  .prod-ed-row {
+    display: flex; justify-content: space-between; align-items: center;
   }
 
-  .prod-price {
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: var(--purple);
+  .prod-ed-price {
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: var(--copper-light);
+    letter-spacing: 0.08em;
   }
 
-  .prod-add {
-    font-size: 0.6rem;
-    font-weight: 400;
-    letter-spacing: 0.18em;
+  .prod-ed-add {
+    font-size: 0.55rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--purple);
-    border: 1px solid var(--purple-mist);
+    color: var(--paper);
+    border: 1px solid rgba(244,239,232,0.4);
     background: none;
-    padding: 7px 14px;
+    padding: 5px 12px;
     cursor: pointer;
     transition: all 0.3s;
   }
 
-  .prod-add:hover { background: var(--purple); color: var(--warm-white); border-color: var(--purple); }
+  .prod-ed-add:hover { background: var(--paper); color: var(--ink); }
 
-  /* ── WARMER FEATURE ── */
-  .warmer {
+  /* ── WAX WARMER — CENTERFOLD ── */
+  .centerfold {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 620px;
-    background: var(--cream-deep);
+    grid-template-columns: 1fr 1fr 1fr;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    min-height: 80vh;
   }
 
-  .warmer-img {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    position: relative;
+  .centerfold-left {
+    background: var(--ink);
+    padding: 80px 48px;
+    display: flex; flex-direction: column; justify-content: space-between;
   }
 
-  .warmer-img-top {
-    background: url('warmer-torso.jpg') center / cover no-repeat;
-    position: relative;
-  }
+  .centerfold-left-top { display: flex; flex-direction: column; gap: 32px; }
 
-  .warmer-img-bottom {
-    background: url('warmer-derriere.jpg') center / cover no-repeat;
-    position: relative;
-  }
-
-  .warmer-img-top::after,
-  .warmer-img-bottom::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: rgba(28,22,24,0.1);
-  }
-
-  .warmer-content {
-    padding: 90px 80px;
-    display: flex; flex-direction: column; justify-content: center;
-    background: #1c1618;
-  }
-
-  .warmer-content .section-label { color: var(--gold); }
-
-  .warmer-content .section-title {
-    color: var(--cream);
-    font-size: clamp(2rem, 3vw, 3rem);
-    margin-bottom: 20px;
-  }
-
-  .warmer-content .section-sub {
-    color: rgba(247,243,237,0.55);
-    max-width: 380px;
-    margin-bottom: 44px;
-  }
-
-  .warmer-points { display: flex; flex-direction: column; gap: 16px; margin-bottom: 44px; }
-
-  .warmer-pt {
-    display: flex; align-items: center; gap: 14px;
-    font-size: 0.8rem;
+  .centerfold-issue {
+    font-size: 0.58rem;
     font-weight: 300;
-    color: rgba(247,243,237,0.55);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--copper-light);
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(244,239,232,0.1);
+  }
+
+  .centerfold-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 4vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--paper);
+  }
+
+  .centerfold-headline em { font-style: italic; color: var(--copper-light); }
+
+  .centerfold-body {
+    font-size: 0.84rem;
+    font-weight: 300;
+    color: rgba(244,239,232,0.5);
+    line-height: 2;
+  }
+
+  .centerfold-pts { display: flex; flex-direction: column; gap: 0; }
+
+  .centerfold-pt {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(244,239,232,0.08);
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: rgba(244,239,232,0.45);
     letter-spacing: 0.04em;
   }
 
-  .pt-line {
-    width: 24px; height: 1px;
-    background: var(--gold);
+  .cf-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    color: var(--copper-light);
+    opacity: 0.5;
     flex-shrink: 0;
   }
 
-  .btn-ghost-dark {
-    display: inline-block;
-    align-self: flex-start;
-    padding: 14px 32px;
-    background: transparent;
-    color: rgba(247,243,237,0.8);
-    text-decoration: none;
-    font-size: 0.68rem;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    border: 1px solid rgba(247,243,237,0.25);
-    transition: all 0.35s;
-  }
-
-  .btn-ghost-dark:hover {
-    border-color: rgba(247,243,237,0.6);
-    color: var(--warm-white);
-    transform: translateY(-2px);
-  }
-
-  /* ── WHY ── */
-  .why {
-    padding: 110px 64px;
-    background: var(--warm-white);
-  }
-
-  .why-inner {
-    display: grid;
-    grid-template-columns: 1fr 1.8fr;
-    gap: 100px;
-    align-items: start;
-  }
-
-  .why-items { display: flex; flex-direction: column; }
-
-  .why-item {
-    padding: 32px 0;
-    border-bottom: 1px solid var(--cream-deep);
-    display: grid;
-    grid-template-columns: 48px 1fr;
-    gap: 20px;
-    align-items: start;
-  }
-
-  .why-item:first-child { border-top: 1px solid var(--cream-deep); }
-
-  .why-n {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 300;
-    color: var(--purple-mist);
-    line-height: 1;
-  }
-
-  .why-text h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: var(--text-dark);
-    margin-bottom: 8px;
-  }
-
-  .why-text p {
-    font-size: 0.8rem;
-    font-weight: 300;
-    color: var(--text-light);
-    line-height: 1.85;
-  }
-
-  /* ── CURATED SETS ── */
-  .sets {
-    padding: 110px 64px;
-    background: var(--cream);
-  }
-
-  .sets-header { text-align: center; margin-bottom: 64px; }
-  .sets-header .section-sub { max-width: 420px; margin: 0 auto; }
-
-  .sets-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3px;
-  }
-
-  .set-card {
-    background: var(--warm-white);
-    padding: 48px 36px;
-    text-align: center;
-    cursor: pointer;
-    transition: background 0.4s, transform 0.4s;
+  .centerfold-center {
     position: relative;
     overflow: hidden;
   }
 
-  .set-card::after {
-    content: '';
+  .centerfold-center img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .centerfold-right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .centerfold-right img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .centerfold-right-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(14,12,10,0.6) 0%, transparent 60%);
+  }
+
+  .centerfold-right-text {
     position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--purple), var(--gold));
-    transform: scaleX(0);
-    transition: transform 0.4s;
+    bottom: 48px; left: 36px; right: 36px;
   }
 
-  .set-card:hover { background: var(--purple); transform: translateY(-4px); }
-  .set-card:hover::after { transform: scaleX(1); }
-
-  .set-icon {
-    width: 48px; height: 48px;
-    border-radius: 50%;
-    background: var(--cream-deep);
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 20px;
-    font-size: 1.3rem;
-    transition: background 0.4s;
-  }
-
-  .set-card:hover .set-icon { background: rgba(255,255,255,0.12); }
-
-  .set-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: var(--text-dark);
-    margin-bottom: 10px;
-    transition: color 0.3s;
-  }
-
-  .set-card:hover .set-name { color: var(--warm-white); }
-
-  .set-desc {
-    font-size: 0.78rem;
+  .centerfold-right-text a {
+    display: inline-block;
+    padding: 13px 32px;
+    background: var(--paper);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.62rem;
     font-weight: 300;
-    color: var(--text-light);
-    line-height: 1.85;
-    margin-bottom: 22px;
-    transition: color 0.3s;
-  }
-
-  .set-card:hover .set-desc { color: rgba(250,248,244,0.55); }
-
-  .set-price {
-    font-size: 0.8rem;
-    font-weight: 400;
-    color: var(--purple);
-    margin-bottom: 20px;
-    transition: color 0.3s;
-  }
-
-  .set-card:hover .set-price { color: var(--gold-light); }
-
-  .set-btn {
-    font-size: 0.6rem;
-    font-weight: 400;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--purple);
-    border: 1px solid var(--purple-mist);
-    background: none;
-    padding: 9px 20px;
-    cursor: pointer;
     transition: all 0.3s;
   }
 
-  .set-card:hover .set-btn {
-    border-color: rgba(250,248,244,0.3);
-    color: var(--warm-white);
-  }
+  .centerfold-right-text a:hover { background: var(--copper); color: var(--paper); }
 
-  /* ── OUR STORY ── */
-  .story {
+  /* ── STORY — EDITORIAL ── */
+  .story-editorial {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 600px;
-    background: var(--warm-white);
+    grid-template-columns: 0.6fr 1px 1fr 1px 0.8fr;
+    border-bottom: 1px solid var(--rule);
+    min-height: 60vh;
   }
 
-  .story-photo {
-    background: url('body-lifestyle.png') center 20% / cover no-repeat;
+  .story-col-rule { background: var(--rule); }
+
+  .story-left {
+    padding: 72px 48px;
+    background: var(--paper-warm);
+    display: flex; flex-direction: column; justify-content: space-between;
   }
 
-  .story-content {
-    padding: 90px 80px;
-    display: flex; flex-direction: column; justify-content: center;
-    background: var(--cream);
-  }
-
-  .story-content .section-title { margin-bottom: 20px; }
-
-  .story-body {
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: var(--text-mid);
-    line-height: 2.1;
-    margin-bottom: 40px;
-    max-width: 420px;
-  }
-
-  .story-divider {
-    width: 40px; height: 1px;
-    background: var(--purple-mist);
-    margin-bottom: 32px;
-  }
-
-  .btn-outline-dark {
-    display: inline-block;
-    align-self: flex-start;
-    padding: 14px 32px;
-    background: transparent;
-    color: var(--purple);
-    text-decoration: none;
-    font-size: 0.68rem;
+  .story-pull {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-style: italic;
     font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    border: 1px solid var(--purple-mist);
-    transition: all 0.35s;
+    line-height: 1.2;
+    color: var(--ink);
   }
 
-  .btn-outline-dark:hover {
-    background: var(--purple);
-    color: var(--warm-white);
-    border-color: var(--purple);
-    transform: translateY(-2px);
+  .story-left-foot {
+    font-size: 0.7rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    letter-spacing: 0.04em;
   }
 
-  /* ── REVIEWS ── */
+  .story-mid {
+    padding: 72px 60px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+
+  .story-mid .feature-label { margin-bottom: 24px; }
+
+  .story-mid h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .story-body-text {
+    font-size: 0.86rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 2.1;
+    margin-bottom: 36px;
+  }
+
+  .story-right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .story-right img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+  }
+
+  /* ── REVIEWS — EDITORIAL ── */
   .reviews {
-    padding: 110px 64px;
-    background: var(--warm-white);
+    padding: 80px 48px;
+    border-bottom: 1px solid var(--rule);
   }
 
-  .reviews-header { text-align: center; margin-bottom: 64px; }
+  .reviews-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .reviews-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3vw, 3.2rem);
+    font-weight: 400;
+  }
+
+  .reviews-header h2 em { font-style: italic; }
+
+  .reviews-count {
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
 
   .reviews-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 1100px;
-    margin: 0 auto;
+    gap: 1px;
+    background: var(--rule);
   }
 
   .review {
-    background: var(--cream);
+    background: var(--paper);
     padding: 40px 36px;
-    position: relative;
   }
 
-  .review::before {
-    content: '\201C';
-    font-family: 'Playfair Display', serif;
-    font-size: 5rem;
-    font-weight: 300;
-    color: var(--purple-mist);
-    position: absolute;
-    top: 12px; left: 26px;
-    line-height: 1;
-    opacity: 0.4;
+  .review-stars {
+    display: flex; gap: 3px; margin-bottom: 20px;
   }
 
-  .stars { display: flex; gap: 3px; margin-bottom: 18px; }
-  .star { color: var(--gold); font-size: 0.8rem; }
+  .review-stars span { color: var(--copper); font-size: 0.75rem; }
 
   .review-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.98rem;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
     font-style: italic;
-    font-weight: 300;
-    color: var(--text-mid);
-    line-height: 1.85;
-    margin-bottom: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.75;
+    margin-bottom: 24px;
+  }
+
+  .review-meta {
+    display: flex; justify-content: space-between; align-items: center;
   }
 
   .review-name {
-    font-size: 0.68rem;
-    font-weight: 400;
-    letter-spacing: 0.16em;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--text-light);
+    color: var(--ink-soft);
+  }
+
+  .review-verified {
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--copper);
+  }
+
+  /* ── SETS ── */
+  .sets {
+    padding: 80px 48px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper-warm);
+  }
+
+  .sets-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 56px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .sets-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1.05;
+  }
+
+  .sets-header h2 em { font-style: italic; }
+
+  .sets-header p {
+    font-size: 0.84rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.9;
+    align-self: flex-end;
+  }
+
+  .sets-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+  }
+
+  .set-ed {
+    background: var(--paper);
+    padding: 44px 36px;
+    display: flex; flex-direction: column; gap: 16px;
+    cursor: pointer;
+    transition: background 0.4s;
+    position: relative;
+  }
+
+  .set-ed:hover { background: var(--ink); }
+
+  .set-ed-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: var(--paper-deep);
+    line-height: 1;
+    transition: color 0.4s;
+  }
+
+  .set-ed:hover .set-ed-num { color: rgba(244,239,232,0.1); }
+
+  .set-ed-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--ink);
+    transition: color 0.4s;
+  }
+
+  .set-ed:hover .set-ed-name { color: var(--paper); }
+
+  .set-ed-desc {
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    transition: color 0.4s;
+    flex: 1;
+  }
+
+  .set-ed:hover .set-ed-desc { color: rgba(244,239,232,0.45); }
+
+  .set-ed-foot {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    transition: border-color 0.4s;
+  }
+
+  .set-ed:hover .set-ed-foot { border-color: rgba(244,239,232,0.1); }
+
+  .set-ed-price {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--copper);
+    transition: color 0.4s;
+  }
+
+  .set-ed:hover .set-ed-price { color: var(--copper-light); }
+
+  .set-ed-arrow {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    transition: color 0.4s, transform 0.3s;
+  }
+
+  .set-ed:hover .set-ed-arrow { color: var(--paper); transform: translateX(4px); }
+
+  /* ── WHY ── */
+  .why {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--rule);
+    background: var(--rule);
+    gap: 1px;
+  }
+
+  .why-item {
+    background: var(--paper);
+    padding: 64px 48px;
+  }
+
+  .why-n {
+    font-family: 'DM Serif Display', serif;
+    font-size: 4rem;
+    font-weight: 400;
+    color: var(--paper-deep);
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+
+  .why-item h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+
+  .why-item p {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.9;
   }
 
   /* ── FINAL CTA ── */
-  .final-cta {
+  .final {
     position: relative;
-    padding: 160px 64px;
-    text-align: center;
+    min-height: 70vh;
+    display: flex; align-items: center; justify-content: center;
     overflow: hidden;
-    background: #1c1618;
+    background: var(--ink);
   }
 
-  .cta-bg {
+  .final-bg {
     position: absolute; inset: 0;
-    background: url('hero-living-room.png') center / cover no-repeat;
-    opacity: 0.2;
+    background: url('body-lifestyle.png') center 20% / cover no-repeat;
+    opacity: 0.15;
   }
 
-  .cta-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(28,22,24,0.6), rgba(28,22,24,0.85));
+  .final-inner {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 0 48px;
   }
 
-  .cta-inner { position: relative; z-index: 2; }
-
-  .final-cta .section-label { color: var(--gold); margin-bottom: 20px; }
-
-  .final-cta .section-title {
-    color: var(--cream);
-    font-size: clamp(2.4rem, 5vw, 4.5rem);
-    font-style: italic;
-    margin-bottom: 20px;
+  .final-vol {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(5rem, 15vw, 18rem);
+    font-weight: 400;
+    color: rgba(244,239,232,0.04);
+    line-height: 1;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
   }
 
-  .final-cta .section-sub {
-    color: rgba(247,243,237,0.5);
-    max-width: 440px;
-    margin: 0 auto 52px;
+  .final-label {
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--copper-light);
+    margin-bottom: 28px;
+    display: block;
   }
+
+  .final-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 7vw, 7rem);
+    font-weight: 400;
+    color: var(--paper);
+    line-height: 1.05;
+    margin-bottom: 40px;
+  }
+
+  .final-headline em { font-style: italic; color: var(--copper-light); }
+
+  .final-btns { display: flex; gap: 12px; justify-content: center; }
+
+  .final-btn-solid {
+    display: inline-block;
+    padding: 16px 44px;
+    background: var(--paper);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: all 0.35s;
+    border: 1px solid var(--paper);
+  }
+
+  .final-btn-solid:hover { background: var(--copper); border-color: var(--copper); color: var(--paper); }
+
+  .final-btn-ghost {
+    display: inline-block;
+    padding: 16px 44px;
+    background: transparent;
+    color: rgba(244,239,232,0.6);
+    text-decoration: none;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    border: 1px solid rgba(244,239,232,0.2);
+    transition: all 0.35s;
+  }
+
+  .final-btn-ghost:hover { border-color: rgba(244,239,232,0.5); color: var(--paper); }
 
   /* ── FOOTER ── */
   footer {
-    background: var(--text-dark);
-    padding: 80px 64px 36px;
+    background: var(--ink-mid);
+    padding: 0;
   }
 
-  .footer-grid {
+  .footer-top {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 60px;
-    margin-bottom: 60px;
-    padding-bottom: 60px;
-    border-bottom: 1px solid rgba(250,248,244,0.07);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(244,239,232,0.06);
+    border-bottom: 1px solid rgba(244,239,232,0.06);
   }
 
-  footer .nav-logo { display: block; margin-bottom: 16px; }
+  .footer-col {
+    padding: 52px 40px;
+    background: var(--ink-mid);
+  }
+
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    color: var(--paper);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 16px;
+  }
 
   .footer-tagline {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 300;
-    color: rgba(250,248,244,0.3);
-    line-height: 1.9;
-    max-width: 220px;
+    color: rgba(244,239,232,0.28);
+    line-height: 1.85;
   }
 
   .footer-col h4 {
-    font-size: 0.6rem;
-    font-weight: 400;
-    letter-spacing: 0.28em;
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 20px;
+    color: var(--copper-light);
+    margin-bottom: 22px;
+    opacity: 0.7;
   }
 
   .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 
   .footer-col a {
-    font-size: 0.76rem;
+    font-size: 0.74rem;
     font-weight: 300;
-    color: rgba(250,248,244,0.38);
+    color: rgba(244,239,232,0.32);
     text-decoration: none;
     transition: color 0.3s;
+    letter-spacing: 0.04em;
   }
 
-  .footer-col a:hover { color: rgba(250,248,244,0.75); }
+  .footer-col a:hover { color: rgba(244,239,232,0.7); }
 
   .footer-bottom {
-    display: flex; justify-content: space-between;
+    padding: 20px 48px;
+    display: flex; justify-content: space-between; align-items: center;
   }
 
   .footer-copy {
-    font-size: 0.65rem;
-    color: rgba(250,248,244,0.18);
-    letter-spacing: 0.08em;
+    font-size: 0.6rem;
+    font-weight: 300;
+    color: rgba(244,239,232,0.15);
+    letter-spacing: 0.1em;
   }
 
-  /* ── REVEAL ANIMATIONS ── */
+  /* ── REVEAL ── */
   .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.85s ease, transform 0.85s ease;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
   }
 
   .reveal.visible { opacity: 1; transform: translateY(0); }
   .reveal-d1 { transition-delay: 0.1s; }
   .reveal-d2 { transition-delay: 0.2s; }
   .reveal-d3 { transition-delay: 0.3s; }
-  .reveal-d4 { transition-delay: 0.4s; }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 960px) {
-    nav { padding: 16px 24px; }
-    .nav-links { display: none; }
-    .hero-content { padding: 0 24px; }
-    .categories, .bestsellers, .why, .sets, .reviews, .final-cta { padding: 80px 24px; }
-    .cat-grid { grid-template-columns: 1fr; }
-    .cat-card:first-child, .cat-card:not(:first-child) { height: 380px; }
-    .products-grid { grid-template-columns: repeat(2, 1fr); }
-    .warmer { grid-template-columns: 1fr; }
-    .warmer-content { padding: 60px 32px; }
-    .why-inner { grid-template-columns: 1fr; gap: 48px; }
-    .sets-grid { grid-template-columns: 1fr; gap: 3px; }
-    .story { grid-template-columns: 1fr; }
-    .story-photo { height: 380px; }
-    .story-content { padding: 60px 32px; }
-    .reviews-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+    .masthead-main { padding: 12px 20px; }
+    .masthead-top { padding: 8px 20px; }
+    .masthead-nav { display: none; }
+    .hero { grid-template-columns: 1fr; height: auto; margin-top: 80px; }
+    .hero-col-rule { display: none; }
+    .hero-left { padding: 40px 24px; min-height: 50vh; }
+    .hero-center { min-height: 60vw; }
+    .hero-right { padding: 32px 24px; }
+    .feature { grid-template-columns: 1fr; }
+    .feature-text { border-right: none; border-bottom: 1px solid var(--rule); padding: 60px 24px; }
+    .products { padding: 60px 24px; }
+    .products-masthead { grid-template-columns: 1fr; }
+    .prod-editorial-grid { grid-template-columns: 1fr 1fr; }
+    .prod-ed:first-child { grid-row: span 1; }
+    .centerfold { grid-template-columns: 1fr; }
+    .centerfold-left { padding: 60px 24px; }
+    .centerfold-center, .centerfold-right { min-height: 60vw; }
+    .story-editorial { grid-template-columns: 1fr; }
+    .story-col-rule { display: none; }
+    .story-left, .story-mid { padding: 48px 24px; }
+    .story-right { min-height: 60vw; }
+    .reviews, .sets { padding: 60px 24px; }
+    .reviews-grid, .sets-grid, .why { grid-template-columns: 1fr; }
+    .sets-header { grid-template-columns: 1fr; }
+    .reviews-header { flex-direction: column; gap: 8px; }
+    .why-item { padding: 48px 24px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .footer-bottom { padding: 16px 24px; flex-direction: column; gap: 8px; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">Harmony<span>.</span>House</a>
-  <ul class="nav-links">
-    <li><a href="#">Collections</a></li>
-    <li><a href="#">Warmers</a></li>
-    <li><a href="#">Body Care</a></li>
-    <li><a href="#">Sets</a></li>
-    <li><a href="#">Our Story</a></li>
-  </ul>
-  <a href="#" class="nav-btn">Shop Now</a>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- MASTHEAD -->
+<nav class="masthead">
+  <div class="masthead-top">
+    <span class="masthead-tagline">Luxury Home & Body Care</span>
+    <span class="masthead-issue">Vol. I — No. 1 — Est. 2024</span>
+  </div>
+  <div class="masthead-main">
+    <ul class="masthead-nav">
+      <li><a href="#">Collections</a></li>
+      <li><a href="#">Warmers</a></li>
+      <li><a href="#">Body Care</a></li>
+    </ul>
+    <a href="#" class="masthead-logo">Harmony House</a>
+    <div class="masthead-actions">
+      <a href="#">Sets</a>
+      <a href="#">Story</a>
+      <a href="#" class="shop-link">Shop</a>
+    </div>
+  </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-img"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <span class="hero-eyebrow">Luxury Home & Body Care</span>
-    <h1>Surround Yourself<br>With <em>Harmony</em></h1>
-    <p class="hero-sub">Body care and home essentials made to elevate your everyday.</p>
-    <div class="hero-btns">
-      <a href="#" class="btn-solid">Shop Best Sellers</a>
-      <a href="#" class="btn-ghost-light">Shop Body & Home</a>
+<!-- HERO — EDITORIAL SPREAD -->
+<div class="hero">
+  <div class="hero-left reveal">
+    <div class="hero-issue-num">01</div>
+    <div class="hero-left-foot">
+      <span class="hero-kicker">The Fragrance Issue</span>
+      <h1 class="hero-left-headline">Surround Yourself With Harmony</h1>
+      <p class="hero-left-sub">Body care and home essentials made to elevate your everyday.</p>
+      <a href="#" class="hero-btn">Shop Best Sellers</a>
     </div>
   </div>
-  <div class="hero-scroll-hint">
-    <div class="scroll-bar"></div>
-    <span>Scroll</span>
+  <div class="hero-col-rule"></div>
+  <div class="hero-center">
+    <div class="hero-center-img"></div>
+    <div class="hero-center-overlay"></div>
+    <div class="hero-center-caption">
+      <span class="hero-caption-text">Harmony House — Home Collection</span>
+      <span class="hero-center-vol">I</span>
+    </div>
   </div>
-</section>
+  <div class="hero-col-rule"></div>
+  <div class="hero-right">
+    <div class="hero-right-top">
+      <span class="hero-right-label">In This Collection</span>
+      <div class="hero-toc-item">
+        <span class="toc-name">Wickless Candles</span>
+        <span class="toc-page">p.01</span>
+      </div>
+      <div class="hero-toc-item">
+        <span class="toc-name">Body Care</span>
+        <span class="toc-page">p.04</span>
+      </div>
+      <div class="hero-toc-item">
+        <span class="toc-name">Wax Warmers</span>
+        <span class="toc-page">p.07</span>
+      </div>
+      <div class="hero-toc-item">
+        <span class="toc-name">Curated Sets</span>
+        <span class="toc-page">p.10</span>
+      </div>
+    </div>
+    <div class="hero-right-bottom">
+      <div class="hero-right-img">
+        <img src="body-care-tray.png" alt="Body Care Collection">
+      </div>
+      <p class="hero-right-caption">Body Care Tray — Lavender & Vanilla Collection</p>
+    </div>
+  </div>
+</div>
 
-<!-- FEATURED CATEGORIES -->
-<section class="categories">
-  <div class="section-wrap">
-    <div class="cat-header reveal">
-      <div>
-        <span class="section-label">Collections</span>
-        <h2 class="section-title">Shop the <em>Experience</em></h2>
-      </div>
-      <p class="section-sub">Everything you need to create a space<br>that feels as good as it smells.</p>
-    </div>
-    <div class="cat-grid">
-      <div class="cat-card reveal reveal-d1">
-        <div class="cat-photo cat-photo-1"></div>
-        <div class="cat-dark"></div>
-        <div class="cat-info">
-          <span class="cat-name">Wickless Candles</span>
-          <a href="#" class="cat-link">Explore Collection →</a>
-        </div>
-      </div>
-      <div class="cat-card reveal reveal-d2">
-        <div class="cat-photo cat-photo-2"></div>
-        <div class="cat-dark"></div>
-        <div class="cat-info">
-          <span class="cat-name">Body Care</span>
-          <a href="#" class="cat-link">Explore Collection →</a>
-        </div>
-      </div>
-      <div class="cat-card reveal reveal-d3">
-        <div class="cat-photo cat-photo-3"></div>
-        <div class="cat-dark"></div>
-        <div class="cat-info">
-          <span class="cat-name">Wax Warmers</span>
-          <a href="#" class="cat-link">Explore Collection →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="divider-rule"></div>
+  <span class="divider-text">Feature</span>
+  <div class="divider-rule"></div>
+</div>
 
-<!-- BEST SELLERS -->
-<section class="bestsellers">
-  <div class="section-wrap">
-    <div class="bs-header reveal">
-      <span class="section-label">Most Loved</span>
-      <h2 class="section-title">Customer <em>Favorites</em></h2>
-      <p class="section-sub">The scents and essentials everyone keeps coming back for.</p>
-    </div>
-    <div class="products-grid">
-      <div class="prod-card reveal reveal-d1">
-        <div class="prod-img">
-          <img class="prod-photo" src="candles-home.png" alt="Velvet Noir Wax Melt">
-          <span class="prod-badge">Best Seller</span>
-        </div>
-        <div class="prod-info">
-          <div class="prod-name">Velvet Noir</div>
-          <div class="prod-desc">Wax Melt · Blackberry & Musk</div>
-          <div class="prod-row">
-            <span class="prod-price">$14.00</span>
-            <button class="prod-add">Add</button>
-          </div>
-        </div>
-      </div>
-      <div class="prod-card reveal reveal-d2">
-        <div class="prod-img">
-          <img class="prod-photo" src="body-care-tray.png" alt="Lavender Calm Body Butter">
-          <span class="prod-badge">New</span>
-        </div>
-        <div class="prod-info">
-          <div class="prod-name">Lavender Calm</div>
-          <div class="prod-desc">Body Butter · Lavender & Vanilla</div>
-          <div class="prod-row">
-            <span class="prod-price">$22.00</span>
-            <button class="prod-add">Add</button>
-          </div>
-        </div>
-      </div>
-      <div class="prod-card reveal reveal-d3">
-        <div class="prod-img">
-          <img class="prod-photo" src="mens-body-care.png" alt="Beard & Body Oil Set">
-        </div>
-        <div class="prod-info">
-          <div class="prod-name">Restore Set</div>
-          <div class="prod-desc">Beard Oil · Hair Oil · Body Wash</div>
-          <div class="prod-row">
-            <span class="prod-price">$48.00</span>
-            <button class="prod-add">Add</button>
-          </div>
-        </div>
-      </div>
-      <div class="prod-card reveal reveal-d4">
-        <div class="prod-img">
-          <img class="prod-photo" src="candles-home.png" alt="Room Spray">
-          <span class="prod-badge">Fan Fave</span>
-        </div>
-        <div class="prod-info">
-          <div class="prod-name">Golden Hour</div>
-          <div class="prod-desc">Room Spray · Sandalwood & Amber</div>
-          <div class="prod-row">
-            <span class="prod-price">$18.00</span>
-            <button class="prod-add">Add</button>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- FEATURE SPREAD -->
+<div class="feature reveal">
+  <div class="feature-text">
+    <div class="feature-num">01</div>
+    <span class="feature-label">Body Care Collection</span>
+    <h2 class="feature-headline">Crafted for the<br>way you <em>live</em></h2>
+    <p class="feature-body">Every formula begins with the belief that your daily routine should feel like a privilege, not a task. Our body care line brings together clean ingredients and considered scent profiles — made to nourish, indulge, and linger.</p>
+    <a href="#" class="hero-btn">Explore Body Care</a>
   </div>
-</section>
+  <div class="feature-img">
+    <img src="body-lifestyle.png" alt="Body Care Lifestyle">
+    <span class="feature-img-label">Body Care — Vol. I</span>
+  </div>
+</div>
 
-<!-- WAX WARMER FEATURE -->
-<div class="warmer">
-  <div class="warmer-img">
-    <div class="warmer-img-top"></div>
-    <div class="warmer-img-bottom"></div>
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="divider-rule"></div>
+  <span class="divider-text">Customer Favorites</span>
+  <div class="divider-rule"></div>
+</div>
+
+<!-- PRODUCTS — EDITORIAL GRID -->
+<div class="products reveal">
+  <div class="products-masthead">
+    <h2>The <em>Essential</em><br>Edit</h2>
+    <div class="products-masthead-right">
+      <p>The scents and essentials our community returns to — season after season.</p>
+      <a href="#" class="hero-btn">View All Products</a>
+    </div>
   </div>
-  <div class="warmer-content">
-    <div class="reveal">
-      <span class="section-label">Signature Collection</span>
-      <h2 class="section-title" style="color:var(--cream);">Elevate Your <em>Space</em></h2>
-      <p class="section-sub" style="color:rgba(247,243,237,0.55);max-width:380px;margin-bottom:36px;">
-        Wax warmers that double as decor — bringing fragrance and style into your home.
-      </p>
-      <div class="warmer-points">
-        <div class="warmer-pt"><div class="pt-line"></div>Flame-free, safe fragrance for any room</div>
-        <div class="warmer-pt"><div class="pt-line"></div>Sculptural designs that complement your decor</div>
-        <div class="warmer-pt"><div class="pt-line"></div>Compatible with all Harmony House wax melts</div>
+  <div class="prod-editorial-grid">
+    <div class="prod-ed reveal reveal-d1">
+      <div class="prod-ed-img">
+        <img src="candles-home.png" alt="Velvet Noir">
       </div>
-      <a href="#" class="btn-ghost-dark">Shop Warmers</a>
+      <div class="prod-ed-info">
+        <span class="prod-ed-name">Velvet Noir</span>
+        <span class="prod-ed-type">Wax Melt · Blackberry & Musk</span>
+        <div class="prod-ed-row">
+          <span class="prod-ed-price">$14.00</span>
+          <button class="prod-ed-add">Add</button>
+        </div>
+      </div>
+    </div>
+    <div class="prod-ed reveal reveal-d2">
+      <div class="prod-ed-img">
+        <img src="body-care-tray.png" alt="Lavender Calm">
+      </div>
+      <div class="prod-ed-info">
+        <span class="prod-ed-name">Lavender Calm</span>
+        <span class="prod-ed-type">Body Butter · Lavender & Vanilla</span>
+        <div class="prod-ed-row">
+          <span class="prod-ed-price">$22.00</span>
+          <button class="prod-ed-add">Add</button>
+        </div>
+      </div>
+    </div>
+    <div class="prod-ed reveal reveal-d3">
+      <div class="prod-ed-img">
+        <img src="mens-body-care.png" alt="Restore Set">
+      </div>
+      <div class="prod-ed-info">
+        <span class="prod-ed-name">Restore Set</span>
+        <span class="prod-ed-type">Beard Oil · Hair Oil · Body Wash</span>
+        <div class="prod-ed-row">
+          <span class="prod-ed-price">$48.00</span>
+          <button class="prod-ed-add">Add</button>
+        </div>
+      </div>
+    </div>
+    <div class="prod-ed reveal reveal-d2">
+      <div class="prod-ed-img">
+        <img src="candles-home.png" alt="Golden Hour">
+      </div>
+      <div class="prod-ed-info">
+        <span class="prod-ed-name">Golden Hour</span>
+        <span class="prod-ed-type">Room Spray · Sandalwood & Amber</span>
+        <div class="prod-ed-row">
+          <span class="prod-ed-price">$18.00</span>
+          <button class="prod-ed-add">Add</button>
+        </div>
+      </div>
+    </div>
+    <div class="prod-ed reveal reveal-d3">
+      <div class="prod-ed-img">
+        <img src="body-care-tray.png" alt="Body Glow">
+      </div>
+      <div class="prod-ed-info">
+        <span class="prod-ed-name">Body Glow</span>
+        <span class="prod-ed-type">Sugar Scrub · Coconut & Jasmine</span>
+        <div class="prod-ed-row">
+          <span class="prod-ed-price">$20.00</span>
+          <button class="prod-ed-add">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="divider-rule"></div>
+  <span class="divider-text">Wax Warmers — Centerfold</span>
+  <div class="divider-rule"></div>
+</div>
+
+<!-- CENTERFOLD — WAX WARMERS -->
+<div class="centerfold">
+  <div class="centerfold-left reveal">
+    <div class="centerfold-left-top">
+      <span class="centerfold-issue">Wax Warmers — The Sculptural Edit</span>
+      <h2 class="centerfold-headline">Elevate<br>Your <em>Space</em></h2>
+      <p class="centerfold-body">Wax warmers that double as decor — bringing fragrance and style into your home, one room at a time.</p>
+    </div>
+    <div class="centerfold-pts">
+      <div class="centerfold-pt"><span class="cf-num">01</span>Flame-free, safe for any room</div>
+      <div class="centerfold-pt"><span class="cf-num">02</span>Sculptural ceramic designs</div>
+      <div class="centerfold-pt"><span class="cf-num">03</span>Compatible with all HH wax melts</div>
+    </div>
+  </div>
+  <div class="centerfold-center">
+    <img src="warmer-torso.jpg" alt="Torso Warmer">
+  </div>
+  <div class="centerfold-right">
+    <img src="warmer-derriere.jpg" alt="Derriere Warmer">
+    <div class="centerfold-right-overlay"></div>
+    <div class="centerfold-right-text">
+      <a href="#">Shop Warmers →</a>
     </div>
   </div>
 </div>
 
 <!-- WHY HARMONY HOUSE -->
-<section class="why">
-  <div class="section-wrap">
-    <div class="why-inner">
-      <div class="reveal">
-        <span class="section-label">Our Promise</span>
-        <h2 class="section-title">Why<br>Harmony<br><em>House</em></h2>
-      </div>
-      <div class="why-items">
-        <div class="why-item reveal reveal-d1">
-          <span class="why-n">01</span>
-          <div class="why-text">
-            <h3>Thoughtfully Crafted</h3>
-            <p>Every product is made with everyday comfort in mind — blending elevated design with feel-good ingredients you can trust.</p>
-          </div>
-        </div>
-        <div class="why-item reveal reveal-d2">
-          <span class="why-n">02</span>
-          <div class="why-text">
-            <h3>Long-Lasting Fragrance</h3>
-            <p>Our flame-free wax melts and warmers deliver rich, consistent scent for hours — without the worry of an open flame.</p>
-          </div>
-        </div>
-        <div class="why-item reveal reveal-d3">
-          <span class="why-n">03</span>
-          <div class="why-text">
-            <h3>Designed to Elevate</h3>
-            <p>From your morning routine to your evening wind-down, Harmony House turns ordinary moments into something worth savoring.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="why">
+  <div class="why-item reveal">
+    <div class="why-n">01</div>
+    <h3>Thoughtfully Crafted</h3>
+    <p>Every product is made with everyday comfort in mind — elevated aesthetics with ingredients you can trust.</p>
   </div>
-</section>
-
-<!-- CURATED SETS -->
-<section class="sets">
-  <div class="section-wrap">
-    <div class="sets-header reveal">
-      <span class="section-label">Bundles</span>
-      <h2 class="section-title">Curated <em>Sets</em></h2>
-      <p class="section-sub">Pair your favorites for the full Harmony House experience.</p>
-    </div>
-    <div class="sets-grid">
-      <div class="set-card reveal reveal-d1">
-        <div class="set-icon">🌙</div>
-        <div class="set-name">Evening Set</div>
-        <p class="set-desc">Warmer + 3 Melts + Body Butter. Everything you need to wind down in style.</p>
-        <div class="set-price">$58.00 · Save $12</div>
-        <button class="set-btn">Shop Set</button>
-      </div>
-      <div class="set-card reveal reveal-d2">
-        <div class="set-icon">🌸</div>
-        <div class="set-name">Body Glow Bundle</div>
-        <p class="set-desc">Sugar Scrub + Body Butter + Shower Gel. Complete body care from head to toe.</p>
-        <div class="set-price">$62.00 · Save $14</div>
-        <button class="set-btn">Shop Set</button>
-      </div>
-      <div class="set-card reveal reveal-d3">
-        <div class="set-icon">🏡</div>
-        <div class="set-name">Home Collection</div>
-        <p class="set-desc">Warmer + 6 Wax Melts + Room Spray. Fragrance for every corner of your home.</p>
-        <div class="set-price">$76.00 · Save $18</div>
-        <button class="set-btn">Shop Set</button>
-      </div>
-    </div>
+  <div class="why-item reveal reveal-d1">
+    <div class="why-n">02</div>
+    <h3>Long-Lasting Fragrance</h3>
+    <p>Flame-free warmers deliver rich, consistent scent for hours — without compromise.</p>
   </div>
-</section>
-
-<!-- OUR STORY -->
-<div class="story">
-  <div class="story-photo"></div>
-  <div class="story-content reveal">
-    <span class="section-label">Our Story</span>
-    <h2 class="section-title">Made for the way<br>you <em>live</em></h2>
-    <div class="story-divider"></div>
-    <p class="story-body">
-      Harmony House was built around one idea — that the products you use every day should feel as good as they work. We make wickless candles, sculptural warmers, and body care essentials for people who believe that comfort isn't a luxury. It's a standard.
-    </p>
-    <a href="#" class="btn-outline-dark">Our Story</a>
+  <div class="why-item reveal reveal-d2">
+    <div class="why-n">03</div>
+    <h3>Designed to Elevate</h3>
+    <p>From morning routine to evening — Harmony House turns ordinary moments into something worth savoring.</p>
   </div>
 </div>
 
-<!-- REVIEWS -->
-<section class="reviews">
-  <div class="section-wrap">
-    <div class="reviews-header reveal">
-      <span class="section-label">Testimonials</span>
-      <h2 class="section-title">What Our Community <em>Says</em></h2>
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="divider-rule"></div>
+  <span class="divider-text">Curated Sets</span>
+  <div class="divider-rule"></div>
+</div>
+
+<!-- SETS -->
+<div class="sets reveal">
+  <div class="sets-header">
+    <h2>The <em>Complete</em><br>Collection</h2>
+    <p>Pair your favorites for the full Harmony House experience. Each set is curated for a specific mood, moment, or room.</p>
+  </div>
+  <div class="sets-grid">
+    <div class="set-ed">
+      <div class="set-ed-num">I</div>
+      <div class="set-ed-name">Evening Set</div>
+      <p class="set-ed-desc">Warmer + 3 Melts + Body Butter. Everything you need to wind down with intention.</p>
+      <div class="set-ed-foot">
+        <span class="set-ed-price">$58 · Save $12</span>
+        <span class="set-ed-arrow">→</span>
+      </div>
     </div>
-    <div class="reviews-grid">
-      <div class="review reveal reveal-d1">
-        <div class="stars">★★★★★</div>
-        <p class="review-text">"My home smells incredible. The Velvet Noir melt is unlike anything I've tried — I've ordered it four times."</p>
-        <span class="review-name">— Simone L., Nashville</span>
+    <div class="set-ed">
+      <div class="set-ed-num">II</div>
+      <div class="set-ed-name">Body Glow Bundle</div>
+      <p class="set-ed-desc">Sugar Scrub + Body Butter + Shower Gel. Complete body care from head to toe.</p>
+      <div class="set-ed-foot">
+        <span class="set-ed-price">$62 · Save $14</span>
+        <span class="set-ed-arrow">→</span>
       </div>
-      <div class="review reveal reveal-d2">
-        <div class="stars">★★★★★</div>
-        <p class="review-text">"The warmer is a piece of art. I get compliments every time someone visits. It's gorgeous and it smells divine."</p>
-        <span class="review-name">— Danielle R., Atlanta</span>
-      </div>
-      <div class="review reveal reveal-d3">
-        <div class="stars">★★★★★</div>
-        <p class="review-text">"Bought the body butter bundle as a gift and kept it for myself. The packaging, the scent, the feel — pure luxury."</p>
-        <span class="review-name">— Maya J., Houston</span>
+    </div>
+    <div class="set-ed">
+      <div class="set-ed-num">III</div>
+      <div class="set-ed-name">Home Collection</div>
+      <p class="set-ed-desc">Warmer + 6 Wax Melts + Room Spray. Fragrance for every corner of your home.</p>
+      <div class="set-ed-foot">
+        <span class="set-ed-price">$76 · Save $18</span>
+        <span class="set-ed-arrow">→</span>
       </div>
     </div>
   </div>
-</section>
+</div>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="divider-rule"></div>
+  <span class="divider-text">Our Story</span>
+  <div class="divider-rule"></div>
+</div>
+
+<!-- STORY -->
+<div class="story-editorial">
+  <div class="story-left reveal">
+    <p class="story-pull">"The spaces we live in should feel as intentional as the lives we're building."</p>
+    <p class="story-left-foot">Harmony House — Founded 2024<br>Nashville, Tennessee</p>
+  </div>
+  <div class="story-col-rule"></div>
+  <div class="story-mid reveal reveal-d1">
+    <span class="feature-label">Our Story</span>
+    <h2>Made for the<br>way you live</h2>
+    <p class="story-body-text">Harmony House was built around one idea — that the products you use every day should feel as good as they work. We make wickless candles, sculptural warmers, and body care essentials for people who believe that comfort isn't a luxury. It's a standard.</p>
+    <a href="#" class="hero-btn">Read Our Story</a>
+  </div>
+  <div class="story-col-rule"></div>
+  <div class="story-right">
+    <img src="body-lifestyle.png" alt="Harmony House Lifestyle">
+  </div>
+</div>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="divider-rule"></div>
+  <span class="divider-text">Community</span>
+  <div class="divider-rule"></div>
+</div>
+
+<!-- REVIEWS -->
+<div class="reviews reveal">
+  <div class="reviews-header">
+    <h2>What They're<br><em>Saying</em></h2>
+    <span class="reviews-count">500+ Verified Reviews</span>
+  </div>
+  <div class="reviews-grid">
+    <div class="review">
+      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="review-text">"My home smells incredible. The Velvet Noir melt is unlike anything I've tried — I've ordered it four times."</p>
+      <div class="review-meta">
+        <span class="review-name">Simone L., Nashville</span>
+        <span class="review-verified">Verified</span>
+      </div>
+    </div>
+    <div class="review">
+      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="review-text">"The warmer is a piece of art. I get compliments every time someone visits. Gorgeous and smells divine."</p>
+      <div class="review-meta">
+        <span class="review-name">Danielle R., Atlanta</span>
+        <span class="review-verified">Verified</span>
+      </div>
+    </div>
+    <div class="review">
+      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="review-text">"Bought the body butter bundle as a gift and kept it for myself. The packaging, scent, feel — pure luxury."</p>
+      <div class="review-meta">
+        <span class="review-name">Maya J., Houston</span>
+        <span class="review-verified">Verified</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- FINAL CTA -->
-<section class="final-cta">
-  <div class="cta-bg"></div>
-  <div class="cta-overlay"></div>
-  <div class="cta-inner reveal">
-    <span class="section-label">Begin Today</span>
-    <h2 class="section-title">Bring Harmony Home</h2>
-    <p class="section-sub">Discover the scents and essentials that turn your everyday into something extraordinary.</p>
-    <a href="#" class="btn-solid">Shop Now</a>
+<div class="final">
+  <div class="final-bg"></div>
+  <div class="final-vol">HH</div>
+  <div class="final-inner reveal">
+    <span class="final-label">Begin Today</span>
+    <h2 class="final-headline">Bring<br><em>Harmony</em> Home</h2>
+    <div class="final-btns">
+      <a href="#" class="final-btn-solid">Shop Now</a>
+      <a href="#" class="final-btn-ghost">View All Collections</a>
+    </div>
   </div>
-</section>
+</div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-grid">
-    <div>
-      <a href="#" class="nav-logo">Harmony<span>.</span>House</a>
+  <div class="footer-top">
+    <div class="footer-col">
+      <a href="#" class="footer-logo">Harmony House</a>
       <p class="footer-tagline">Luxury home fragrance and body care for intentional, elevated living.</p>
     </div>
     <div class="footer-col">
@@ -1211,7 +1548,7 @@
     <div class="footer-col">
       <h4>Support</h4>
       <ul>
-        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Contact</a></li>
         <li><a href="#">Shipping & Returns</a></li>
         <li><a href="#">FAQ</a></li>
         <li><a href="#">Instagram</a></li>
@@ -1219,16 +1556,48 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2025 Harmony House. All rights reserved.</span>
+    <span class="footer-copy">© 2025 Harmony House — Vol. I, No. 1</span>
     <span class="footer-copy">Privacy · Terms</span>
   </div>
 </footer>
 
 <script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
+      ring.style.opacity = '0.15';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+      ring.style.opacity = '0.4';
+    });
+  });
+
+  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
   reveals.forEach(el => obs.observe(el));
 </script>
 </body>
